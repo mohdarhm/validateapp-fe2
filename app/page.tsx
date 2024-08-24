@@ -22,6 +22,7 @@ export default function Home() {
   const [failure, isFailure] = useState(false);
   const [message, setMessage] = useState("");
   const [btndis, setBtndis] = useState(true);
+  const [generalError, setGeneralError] = useState(false);
 
   const fetchUserIp = async () => {
     try {
@@ -29,7 +30,12 @@ export default function Home() {
       const data = await response.json();
       setUserIp(data.ip);
     } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       console.error("Failed to fetch user IP:", error);
+      setGeneralError(true);
+      isFailure(true);
+      setMessage(errorMessage);
     } finally {
       setUserIpLoading(false);
     }
@@ -43,7 +49,12 @@ export default function Home() {
       const data = await response.json();
       setServerIp(data.external_ip);
     } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       console.error("Failed to fetch server IP:", error);
+      setGeneralError(true);
+      isFailure(true);
+      setMessage(errorMessage);
     } finally {
       setServerIpLoading(false);
     }
@@ -86,7 +97,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!serverIpLoading && !userIpLoading) {
+    if (!serverIpLoading && !userIpLoading && !generalError) {
       setBtndis(false);
     }
   }, [serverIpLoading, userIpLoading]);
@@ -191,7 +202,7 @@ export default function Home() {
       </Button>
 
       {failure ? (
-        <Card className="w-full md:w-auto max-w-[600px] px-7 mt-20 bg-blue-400">
+        <Card className="w-full md:w-auto max-w-[600px] px-7 mt-20 bg-red-500">
           <CardHeader className="flex gap-3 p-5">
             <div className="flex flex-col">
               <p className={clsx("text-lg", code.className)}>
