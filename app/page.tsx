@@ -109,7 +109,7 @@ export default function Home() {
       >
         <h1
           className={clsx(
-            "sm:text-7xl text-5xl font-black tracking-tighter text-yellow-400 pb-14",
+            "sm:text-7xl text-4xl font-black tracking-tighter text-left sm:text-center text-yellow-400 pb-14",
             bold.className
           )}
         >
@@ -121,7 +121,7 @@ export default function Home() {
         <Card className="w-full md:w-auto px-7">
           <CardHeader className="flex gap-3 p-5">
             <div className="flex flex-col">
-              <p className={clsx("sm:text-4xl text-2xl", code.className)}>
+              <p className={clsx("sm:text-4xl text-xl", code.className)}>
                 {"SERVER IP"}
               </p>
             </div>
@@ -129,11 +129,14 @@ export default function Home() {
           <Divider />
           <CardBody className="p-10">
             {serverIpLoading ? (
-              <CircularProgress className="scale-150 px-10" size="lg" />
+              <CircularProgress
+                className="sm:scale-150 scale-105 px-10"
+                size="lg"
+              />
             ) : (
               <p
                 className={clsx(
-                  "sm:font-black font-bold sm:text-6xl text-4xl",
+                  "sm:font-black font-bold sm:text-6xl text-2xl",
                   IP.className
                 )}
               >
@@ -156,7 +159,7 @@ export default function Home() {
         <Card className="w-full md:w-auto px-7">
           <CardHeader className="flex gap-3 p-5">
             <div className="flex flex-col">
-              <p className={clsx("sm:text-4xl text-2xl", code.className)}>
+              <p className={clsx("sm:text-4xl text-xl", code.className)}>
                 {"YOUR IP"}
               </p>
             </div>
@@ -164,11 +167,14 @@ export default function Home() {
           <Divider />
           <CardBody className="p-10">
             {userIpLoading ? (
-              <CircularProgress className="scale-150 px-10" size="lg" />
+              <CircularProgress
+                className="sm:scale-150 scale-105 px-10"
+                size="lg"
+              />
             ) : (
               <p
                 className={clsx(
-                  "sm:font-black font-bold sm:text-6xl text-4xl",
+                  "sm:font-black font-bold sm:text-6xl text-2xl",
                   IP.className
                 )}
               >
@@ -182,7 +188,7 @@ export default function Home() {
 
       <h1
         className={clsx(
-          "sm:text-5xl text-5xl font-black tracking-tighter text-yellow-400 pt-10 pb-14",
+          "sm:text-5xl text-4xl font-black tracking-tighter text-yellow-400 pt-10 pb-14",
           bold.className
         )}
       >
@@ -195,7 +201,7 @@ export default function Home() {
         onClick={addIp}
         variant="ghost"
         color="success"
-        className="scale-150 py-8 px-16"
+        className="scale-150 text-xs py-8 sm:px-16 px-5 max-w-full"
         size="lg"
       >
         {"Click hereeeeeeeee"}
